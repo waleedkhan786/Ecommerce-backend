@@ -2,13 +2,13 @@ import express from 'express'
 import multer from 'multer';
 // import bcrypt from 'bcrypt'
 // import User from './models/user.js';
-import { parser } from './config.js';
+import { parser } from './helpers/config.js';
 import cors from 'cors'
 import { connect } from './helpers/ConnectoDB.js';
 import { loginUser,verifyUser, signupUser,logoutUser} from './Controller/User.js';
 import cookieParser from 'cookie-parser';
 import { verifyToken } from './helpers/Token.js';
-
+import productRouter from "./routes/productRouter.js"
 
 const app = express();
 const port = 8000;
@@ -21,6 +21,7 @@ app.use(cors({
 }))
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser(cookieSecret));
+app.use("/product",productRouter)
 
 app.get('/check-user', verifyToken, verifyUser)
 

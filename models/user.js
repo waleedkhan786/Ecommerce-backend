@@ -5,16 +5,16 @@ const Model = mongoose.model
 const userSchema = new schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     email:{
         type: String,
         unique: true,
-        require: true
+        required: true
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         min: 4
     }
 })
